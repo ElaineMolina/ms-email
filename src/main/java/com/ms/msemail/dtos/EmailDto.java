@@ -1,8 +1,10 @@
 package com.ms.msemail.dtos;
 
+import com.ms.msemail.models.EmailModel;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 @Data
 public class EmailDto {
@@ -19,4 +21,10 @@ public class EmailDto {
     private String subject;
     @NotBlank
     private String text;
+
+    public EmailModel convertToEmailModel(){
+        var emailModel = new EmailModel();
+        BeanUtils.copyProperties(this, emailModel);
+        return emailModel;
+    }
 }
