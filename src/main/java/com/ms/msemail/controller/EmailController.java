@@ -5,6 +5,8 @@ import com.ms.msemail.dtos.EmailDto;
 import com.ms.msemail.models.EmailModel;
 import com.ms.msemail.service.EmailService;
 import jakarta.validation.Valid;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,7 @@ import java.util.UUID;
 
 @RestController
 public class EmailController {
+
 
     @Autowired
     EmailService emailService;
