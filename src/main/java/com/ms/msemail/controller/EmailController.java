@@ -23,19 +23,23 @@ import java.util.UUID;
 @RestController
 public class EmailController {
 
+    Logger logger = LogManager.getLogger(EmailController.class);
 
     @Autowired
     EmailService emailService;
     @PostMapping("/emails")
     public ResponseEntity<EmailModel> sendingEmail(@RequestBody @Valid EmailDto emailDto){
-//        EmailModel emailModel = new EmailModel();
-//        BeanUtils.copyProperties(emailDto, emailModel);
-//        emailService.sendEmail(emailModel);
         return new ResponseEntity<>(emailService.sendEmail(emailDto.convertToEmailModel()), HttpStatus.CREATED);
 
     }
     @GetMapping("/emails")
     public ResponseEntity<Page<EmailModel>> getAllEmails(@PageableDefault(page = 0, size = 5, sort = "emailId", direction = Sort.Direction.DESC) Pageable pageable){
+        logger.trace("TRACE");
+        logger.debug("DEBUG");
+        logger.info("INFO");
+        logger.warn("WARN");
+        logger.error("ERROR");
+        logger.fatal("FATAL");
         return new ResponseEntity<>(emailService.findAll(pageable), HttpStatus.OK);
     }
     @GetMapping("/emails/{emailId}")
